@@ -30,7 +30,7 @@ Newer Movie Duels updates (7 and 8) have not been tested yet and may not work.
 1. Install **KOTOR I and/or KOTOR II**.
 2. Install **Jedi Academy**.
 3. Install **Movie Duels - Update 6 + Patch AIO** into Jedi Academy.
-4. Download the latest **KOTOR Academy zip** from the [Releases page](../../releases). Do not use the green "Code" button; that is not the game.
+4. Download **[KOTOR-Academy-alpha-windows.zip](../../raw/main/download/KOTOR-Academy-alpha-windows.zip)**. Do not use the green "Code" button; that downloads this page's files, not just the game.
 5. Extract the zip anywhere, for example your Desktop.
 6. Open the extracted folder and double-click **Play KOTOR Academy**.
 
