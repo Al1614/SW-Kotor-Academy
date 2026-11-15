@@ -1,0 +1,8 @@
+# Only needed if the launcher cannot find a game by itself.
+# Copy this file to paths.txt, remove the # from the lines you need,
+# and put in the folder where that game is installed.
+
+# KOTOR1=D:\Games\swkotor
+# KOTOR2=D:\Games\Knights of the Old Republic II
+# JEDIACADEMY=D:\Games\Jedi Academy
+# MOVIEDUELS=D:\Games\Jedi Academy\GameData\base
