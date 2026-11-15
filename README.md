@@ -141,10 +141,14 @@ KOTOR Academy stands on more than twenty years of community work. Thank you to e
 
 **Development journal:** [KOTOR Academy on Deadly Stream](https://deadlystream.com/topic/12469-kotor-academy-jedi-academy-combat-in-tsl-wip/)
 
+## AI disclosure
+
+KOTOR Academy was made with AI tools, under my direction. See the [AI disclosure](AI-DISCLOSURE.md) for where and how.
+
 ## Legal
 
 KOTOR Academy is a fan project. It is not made, endorsed or supported by Lucasfilm, Disney, BioWare, Obsidian Entertainment, Raven Software, Aspyr or any other rights holder. Star Wars and all related names are trademarks of their owners.
 
 It ships no game files and no mod files. You need your own legal copies of the games, and you install the mods from their creators' pages.
 
-The program is released under the MIT licence; see `LICENSE`, `NOTICE` and `THIRD-PARTY-LICENSES.txt` in the download.
+KOTOR Academy's own work is copyright 2026 Al1614 and released under the MIT licence; see `LICENSE`, `NOTICE` and `THIRD-PARTY-LICENSES.txt` in the download.

@@ -1,23 +1,49 @@
-kjk
-Copyright (c) 2026 the kjk contributors
+KOTOR Academy
+Copyright (c) 2026 Al1614
 Licensed under the MIT License; see LICENSE.
+
+KOTOR Academy is an unofficial, free, non-commercial fan project. It plays
+Star Wars: Knights of the Old Republic and Knights of the Old Republic II -
+The Sith Lords with the real-time movement and lightsaber combat of Star
+Wars Jedi Knight: Jedi Academy.
+
+What KOTOR Academy is built on
+------------------------------
+KOTOR Academy is a modified version of kjk, the open-source engine that
+plays the KOTOR games with Jedi Academy's combat.
+
+  kjk   https://github.com/kjk-engine/kjk
+  Copyright (c) 2026 the kjk contributors, MIT License
+
+KOTOR Academy's own work on top of kjk includes its combat presentation and
+balance, saber styles and guards drawn from Movie Duels, companion and
+scene fixes for both campaigns, Manaan's underwater play, the practice
+arena, save handling, the player launcher and its documentation.
 
 Game data
 ---------
-kjk contains no data from any game. It reads Star Wars: Knights of the
-Old Republic, Star Wars: Knights of the Old Republic II - The Sith Lords and
-Star Wars Jedi Knight: Jedi Academy from installs the player already owns.
-Nothing from those games is shipped in this repository or in any release.
+KOTOR Academy contains no data from any game and no files from any mod. It
+reads Star Wars: Knights of the Old Republic, Star Wars: Knights of the Old
+Republic II - The Sith Lords, Star Wars Jedi Knight: Jedi Academy and the
+Movie Duels mod from installs the player already owns. Nothing from those
+games or mods is shipped in this repository or in any release.
 
 Star Wars, Knights of the Old Republic and Jedi Academy are trademarks of
-their respective owners. kjk is not affiliated with or endorsed by them.
+their respective owners. KOTOR Academy is not affiliated with or endorsed by
+Lucasfilm, Disney, BioWare, Obsidian Entertainment, Raven Software, Aspyr or
+any other rights holder.
 
-Behaviour references
---------------------
-These projects were read to understand how the original engines behave. No
-code from them is included, translated or adapted; the parts of kjk that
-match their behaviour were written from behaviour specifications by people
-who had not read their source.
+Mods
+----
+Movie Duels is by the Movie Duels Team, building on Wector's Movie Duels 2.
+The people whose mods and assets this project relies on or was tested with
+are credited in README.md.
+
+Behaviour references (from kjk's notice)
+----------------------------------------
+kjk states that these projects were read to understand how the original
+engines behave, and that no code from them is included, translated or
+adapted in kjk:
 
 OpenJK   https://github.com/JACoders/OpenJK   GNU GPL v2
 reone    https://github.com/seedhartha/reone  GNU GPL v3
@@ -26,12 +52,15 @@ iw4L     https://github.com/vladtrc/iw4L      Apache License 2.0 (structure and 
 
 Steam
 -----
-Binary releases do not include Steam. A build made from source with the
-`steam` feature (the default) links Valve's Steam API library
-(libsteam_api.dylib, steam_api64.dll or libsteam_api.so), the Steamworks
-SDK's redistributable as the steamworks-sys crate ships it, for co-op
-through Steam. It is Valve's, under the Steamworks SDK's terms, not the MIT
-License. Steam and the Steam logo are trademarks of Valve Corporation.
+The download does not include Steam's library. Co-op connects by address.
+Steam and the Steam logo are trademarks of Valve Corporation.
 
-Binary releases include THIRD-PARTY-LICENSES.html for the Rust crates they
-are built from.
+Third-party libraries
+---------------------
+The download includes THIRD-PARTY-LICENSES.txt, which lists the open-source
+libraries the program is built from and their licences.
+
+AI disclosure
+-------------
+KOTOR Academy was made with AI tools. See the AI disclosure on the project
+page: https://github.com/Al1614/SW-Kotor-Academy
