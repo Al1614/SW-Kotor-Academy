@@ -121,6 +121,7 @@ Delete the **KOTOR Academy** folder and the desktop shortcut. Your games are unt
 - **"KOTOR Academy cannot start yet"**: the message underneath says what is missing. Install that, then try again.
 - **It cannot find a game**: when it asks, click **Yes** and pick the folder where that game is installed.
 - **The story movies do not play**: they need a free program called [FFmpeg](https://ffmpeg.org/download.html) installed on your PC. Without it the movies are skipped and the game carries on.
+- **The second locked door on the Endar Spire will not open**: Trask opens it. Click Trask's portrait to switch to him, look at the door, change the action from Open to **Security** (mouse wheel, or D-pad right on a controller), then use it. Switch back to your own character afterwards.
 - **Where are my saves?** Press the Windows key, type `%APPDATA%\kjk` and press Enter. Delete that folder only if you want to wipe your saves and settings.
 - **Setting a game folder by hand**: copy `paths.example.txt`, name the copy `paths.txt`, and type the game's folder into it.
 

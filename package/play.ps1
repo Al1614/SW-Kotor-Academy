@@ -390,8 +390,25 @@ function Died($run) {
     if (-not $run.WaitForExit(10000)) { return $false }
     return $run.ExitCode -ne 0
 }
+# Whether the game started since $since draws on the processor instead of a
+# graphics card (its report's first lines say): a card that cannot do
+# DirectX 12 leaves only Windows' own slow stand-in, at a frame a second.
+function Software-Drawn([datetime]$since) {
+    $logs = Join $env:APPDATA 'kjk\logs'
+    for ($i = 0; $i -lt 20; $i++) {
+        Start-Sleep -Milliseconds 500
+        $new = Get-ChildItem -LiteralPath $logs -Directory -ErrorAction SilentlyContinue | Where-Object { $_.CreationTime -ge $since } | Sort-Object CreationTime | Select-Object -Last 1
+        if (-not $new) { continue }
+        $line = Select-String -LiteralPath (Join $new.FullName 'kjk.log') -Pattern 'AdapterInfo' -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($line) { return [bool]($line.Line -match 'device_type: Cpu|Basic Render Driver') }
+    }
+    return $false
+}
+$since = (Get-Date).AddSeconds(-1)
 $run = Start-Game
-if (Died $run) {
+$slow = $forced -and $run -and (Software-Drawn $since)
+if ($slow -and -not $run.HasExited) { Stop-Process -Id $run.Id -Force -ErrorAction SilentlyContinue }
+if ($slow -or (Died $run)) {
     $again = $false
     if ($forced) {
         # Some PCs cannot start the game on DirectX 12: let it choose.
