@@ -241,6 +241,7 @@ $env:KJK_MOVIEDUELS = $duels
 
 # Optional: loose KOTOR I mod files (textures, models) in the mods folder.
 $mods = Join $here 'mods'
+if (-not (Test-Path -LiteralPath $mods -PathType Container)) { [void](New-Item -ItemType Directory -Path $mods -Force) }
 if ((Test-Path -LiteralPath $mods -PathType Container) -and @(Get-ChildItem -LiteralPath $mods -File -Recurse | Select-Object -First 1).Count -gt 0) {
     $env:KJK_MOD_ROOT = $mods
 }

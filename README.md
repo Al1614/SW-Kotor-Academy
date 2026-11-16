@@ -63,10 +63,10 @@ You do not need any of these. The game plays fine without them. They only change
 Every mod is added the same way:
 
 1. Open your **KOTOR Academy** folder.
-2. Make a new folder inside it and name it `mods`.
+2. Open the `mods` folder inside it. It is already there, empty and ready.
 3. Download the mod from its creator's page.
 4. Unpack the download (right-click, **Extract All**).
-5. Copy the mod's files into your `mods` folder. Copy the files themselves, not the folder they came in.
+5. Copy the mod's files into the `mods` folder. Copy the files themselves, not the folder they came in.
 
 Do this **before** you start a new game. Changing your mods later can stop your saved games from loading.
 
