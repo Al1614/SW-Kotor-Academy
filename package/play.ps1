@@ -369,13 +369,40 @@ $env:KJK_CAMPAIGN = $campaign
 # DirectX 12 is the graphics mode the game is tested with. Left to choose,
 # it picks Vulkan, which is untested and under which controllers were seen to
 # drop out. Set WGPU_BACKEND yourself to use another.
-if (-not $env:WGPU_BACKEND) { $env:WGPU_BACKEND = 'dx12' }
+$forced = (-not $env:WGPU_BACKEND) -and (-not $named.ContainsKey('GRAPHICS'))
+if ($forced) { $env:WGPU_BACKEND = 'dx12' }
 
 # The game is started in this launcher's own hidden console: started in a
 # new one, Windows shows a terminal window beside it.
-if ($args.Count -gt 0) {
-    Start-Process -FilePath $game -WorkingDirectory $here -NoNewWindow -ArgumentList $args
-} else {
-    Start-Process -FilePath $game -WorkingDirectory $here -NoNewWindow
+$gameArgs = $args
+function Start-Game {
+    if ($gameArgs.Count -gt 0) {
+        $run = Start-Process -FilePath $game -WorkingDirectory $here -NoNewWindow -PassThru -ArgumentList $gameArgs
+    } else {
+        $run = Start-Process -FilePath $game -WorkingDirectory $here -NoNewWindow -PassThru
+    }
+    if ($run) { $null = $run.Handle }
+    return $run
+}
+# Whether the game closed with an error within ten seconds of starting.
+function Died($run) {
+    if (-not $run) { return $true }
+    if (-not $run.WaitForExit(10000)) { return $false }
+    return $run.ExitCode -ne 0
+}
+$run = Start-Game
+if (Died $run) {
+    $again = $false
+    if ($forced) {
+        # Some PCs cannot start the game on DirectX 12: let it choose.
+        Remove-Item Env:WGPU_BACKEND
+        $run = Start-Game
+        $again = -not (Died $run)
+        if ($again) { Save-Path 'GRAPHICS' 'auto' }
+    }
+    if (-not $again) {
+        Tell ("The game closed right after starting.`n`nIts report is in the newest folder here:`n" + (Join $env:APPDATA 'kjk\logs') + "`n`nPlease send the kjk.log file from that folder with your bug report.") 'Warning'
+        exit 1
+    }
 }
 exit 0
