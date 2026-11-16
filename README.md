@@ -69,6 +69,10 @@ Every mod is added the same way:
 4. Unpack the download (right-click, **Extract All**).
 5. Copy the mod's files into the `mods` folder. Copy the files themselves, not the folder they came in.
 
+**Mods already in your KOTOR folder count too.** KOTOR Academy also reads the `Override` folder inside your KOTOR I and KOTOR II installs, so mods you installed there for the original games are used as well. If something looks wrong, that folder is the first place to check.
+
+**Copy the `.txi` files.** Texture packs come with small files ending in `.txi`. Copy them along with the textures. Without them, shiny armour such as the Sith soldiers' can turn see-through.
+
 Do this **before** you start a new game. Changing your mods later can stop your saved games from loading.
 
 ### Hooded Jedi robes in the KOTOR II style
@@ -122,6 +126,7 @@ Delete the **KOTOR Academy** folder and the desktop shortcut. Your games are unt
 - **It cannot find a game**: when it asks, click **Yes** and pick the folder where that game is installed.
 - **The story movies do not play**: they need a free program called [FFmpeg](https://ffmpeg.org/download.html) installed on your PC. Without it the movies are skipped and the game carries on.
 - **The second locked door on the Endar Spire will not open**: Trask opens it. Click Trask's portrait to switch to him, look at the door, change the action from Open to **Security** (mouse wheel, or D-pad right on a controller), then use it. Switch back to your own character afterwards.
+- **Armour looks see-through**: a texture mod is missing its `.txi` files. Copy the pack's `.txi` files next to its textures (in `mods`, or in your KOTOR `Override` folder if that is where the pack is), or remove that texture to get the original back.
 - **Where are my saves?** Press the Windows key, type `%APPDATA%\kjk` and press Enter. Delete that folder only if you want to wipe your saves and settings.
 - **Setting a game folder by hand**: copy `paths.example.txt`, name the copy `paths.txt`, and type the game's folder into it.
 
