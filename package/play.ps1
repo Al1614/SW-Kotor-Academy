@@ -371,9 +371,11 @@ $env:KJK_CAMPAIGN = $campaign
 # drop out. Set WGPU_BACKEND yourself to use another.
 if (-not $env:WGPU_BACKEND) { $env:WGPU_BACKEND = 'dx12' }
 
+# The game is started in this launcher's own hidden console: started in a
+# new one, Windows shows a terminal window beside it.
 if ($args.Count -gt 0) {
-    Start-Process -FilePath $game -WorkingDirectory $here -ArgumentList $args
+    Start-Process -FilePath $game -WorkingDirectory $here -NoNewWindow -ArgumentList $args
 } else {
-    Start-Process -FilePath $game -WorkingDirectory $here
+    Start-Process -FilePath $game -WorkingDirectory $here -NoNewWindow
 }
 exit 0
