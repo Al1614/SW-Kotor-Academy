@@ -104,9 +104,9 @@ The arena is a room where you can fight practice battles without touching your s
 
 **KOTOR II:** the arena works straight away. Nothing extra to install.
 
-**KOTOR I:** the arena needs one more mod, ARK07's **KOTOR Duel Room 1.0**:
+**KOTOR I:** the arena needs one more mod, **[Duel Room Final 1.0](https://deadlystream.com/files/file/559-duel-room-final/)** by Aneeryrlue and ARK07:
 
-1. Download the mod and unpack it (right-click, **Extract All**).
+1. Download the mod from the link above and unpack it (right-click, **Extract All**).
 2. Open your **KOTOR Academy** folder and make a new folder inside it named `arena`.
 3. Copy everything from the unpacked mod into the `arena` folder.
 
@@ -194,7 +194,7 @@ KOTOR Academy stands on more than twenty years of community work. Thank you to e
 - [Weapon Model Overhaul Texture Rework](https://www.nexusmods.com/kotor/mods/8) by Fallen Guardian.
 - [Vurt's KotOR Visual Resurgence](https://www.nexusmods.com/kotor/mods/1730?tab=files) by Vurt.
 - [TSLRCM](https://deadlystream.com/files/file/578-tsl-restored-content-mod/) by Zbyl2, DarthStoney, Hassat Hunter, VarsityPuppet and contributors: the restored content mod for KOTOR II.
-- KOTOR Duel Room 1.0 by ARK07, with InSidious: the room setup read by KOTOR I's optional combat arena.
+- [Duel Room Final 1.0](https://deadlystream.com/files/file/559-duel-room-final/) by Aneeryrlue and ARK07, built on Talchia's KOTOR Arena, with robes by InSidious and Rece and scripting help from Fair Strides: the room setup read by KOTOR I's optional combat arena.
 
 **Inspiration**
 
