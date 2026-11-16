@@ -49,7 +49,7 @@ Do not use the green "Code" button at the top of this page. That downloads the w
 1. Open the **KOTOR Academy** folder.
 2. Double-click **Play KOTOR Academy**.
 3. If Windows shows a blue box saying "Windows protected your PC", click **More info**, then **Run anyway**. This appears because the program is new and unsigned.
-4. The first time, it asks if you want a shortcut on your desktop. Type **Y** and press Enter if you do.
+4. The first time, it asks if you want a shortcut on your desktop. Click **Yes** if you do. It also copies a few Jedi Academy files into its own folder (about 1 GB); this happens once.
 5. If you own both KOTOR games, a window asks which one to play. Click **KOTOR** or **KOTOR II**.
 
 That is it. Next time, just use the desktop shortcut.
@@ -103,7 +103,7 @@ Delete the **KOTOR Academy** folder and the desktop shortcut. Your games are unt
 ## Help
 
 - **"KOTOR Academy cannot start yet"**: the message underneath says what is missing. Install that, then try again.
-- **It cannot find a game**: when it asks, answer **Y** and pick the folder where that game is installed.
+- **It cannot find a game**: when it asks, click **Yes** and pick the folder where that game is installed.
 - **The story movies do not play**: they need a free program called [FFmpeg](https://ffmpeg.org/download.html) installed on your PC. Without it the movies are skipped and the game carries on.
 - **Where are my saves?** Press the Windows key, type `%APPDATA%\kjk` and press Enter. Delete that folder only if you want to wipe your saves and settings.
 - **Setting a game folder by hand**: copy `paths.example.txt`, name the copy `paths.txt`, and type the game's folder into it.

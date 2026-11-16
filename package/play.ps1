@@ -9,14 +9,17 @@ function Join([string]$a, [string]$b) { [System.IO.Path]::Combine($a, $b) }
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $game = Join $here 'kjk.exe'
 
-function Say([string]$text) { Write-Host $text }
+# The launcher runs with no console window: everything it says is a message box.
+Add-Type -AssemblyName System.Windows.Forms
+function Tell([string]$text, [string]$icon = 'Information') {
+    [void][System.Windows.Forms.MessageBox]::Show($text, 'KOTOR Academy', 'OK', $icon)
+}
 function Stop-With([string[]]$lines) {
-    Say ''
-    Say 'KOTOR Academy cannot start yet.'
-    Say ''
-    foreach ($line in $lines) { Say $line }
-    Say ''
-    Say 'See README for the full install steps.'
+    Tell (("KOTOR Academy cannot start yet.`n`n" + ($lines -join "`n") + "`n`nSee README for the full install steps.")) 'Warning'
+    exit 1
+}
+trap {
+    Tell ("KOTOR Academy could not start.`n`n" + $_.Exception.Message) 'Warning'
     exit 1
 }
 
@@ -117,14 +120,12 @@ function Ask-Folder([string]$what, [string]$marker) {
         foreach ($folder in $picked, (Split-Path -Parent $picked), (Split-Path -Parent (Split-Path -Parent $picked))) {
             if ($folder -and (Test-Path -LiteralPath (Join $folder $marker))) { return $folder }
         }
-        Say ''
-        Say "That folder does not look like $what (no $marker in it). Try again, or press Cancel."
+        Tell "That folder does not look like $what (no $marker in it). Try again, or press Cancel." 'Warning'
     }
 }
 
 function Ask-Yes([string]$question) {
-    $answer = Read-Host "$question (Y/N)"
-    return $answer -match '^\s*y'
+    return [System.Windows.Forms.MessageBox]::Show($question, 'KOTOR Academy', 'YesNo', 'Question') -eq [System.Windows.Forms.DialogResult]::Yes
 }
 
 $kotor1Marker = 'swkotor.exe'
@@ -136,21 +137,17 @@ $academy = Find-Game 'JEDIACADEMY' 'Jedi Academy' 'Jedi Academy' @('GOG Games\St
 
 # Not found by itself: the player points at it, once.
 if (-not $kotor1 -and -not $kotor2) {
-    Say ''
-    Say 'Knights of the Old Republic was not found on this PC.'
-    if (Ask-Yes 'Is KOTOR I installed? Choose its folder now') {
+    if (Ask-Yes "Knights of the Old Republic was not found on this PC.`n`nIs KOTOR I installed? Click Yes to choose its folder.") {
         $kotor1 = Ask-Folder 'Knights of the Old Republic' $kotor1Marker
         if ($kotor1) { Save-Path 'KOTOR1' $kotor1 }
     }
-    if (-not $kotor1 -and (Ask-Yes 'Is KOTOR II installed? Choose its folder now')) {
+    if (-not $kotor1 -and (Ask-Yes 'Is KOTOR II installed? Click Yes to choose its folder.')) {
         $kotor2 = Ask-Folder 'Knights of the Old Republic II' $kotor2Marker
         if ($kotor2) { Save-Path 'KOTOR2' $kotor2 }
     }
 }
 if (-not $academy) {
-    Say ''
-    Say 'Jedi Knight: Jedi Academy was not found on this PC.'
-    if (Ask-Yes 'Is it installed? Choose its folder now') {
+    if (Ask-Yes "Jedi Knight: Jedi Academy was not found on this PC.`n`nIs it installed? Click Yes to choose its folder.") {
         $academy = Ask-Folder 'Jedi Academy' $academyMarker
         if ($academy) { Save-Path 'JEDIACADEMY' $academy }
     }
@@ -177,9 +174,7 @@ function Find-Duels {
 }
 $duels = Find-Duels
 if ($academy -and -not $duels) {
-    Say ''
-    Say 'Movie Duels was not found beside Jedi Academy.'
-    if (Ask-Yes 'Is Movie Duels installed somewhere else? Choose its folder now') {
+    if (Ask-Yes "Movie Duels was not found beside Jedi Academy.`n`nIs it installed somewhere else? Click Yes to choose its folder.") {
         $picked = Ask-Folder 'Movie Duels (the folder holding MD_Assets2.pk3)' 'MD_Assets2.pk3'
         if ($picked) { Save-Path 'MOVIEDUELS' $picked; $duels = Find-Duels }
     }
@@ -205,7 +200,43 @@ if ($missing.Count -gt 0) {
 
 if ($kotor1) { $env:KJK_KOTOR1 = $kotor1 }
 if ($kotor2) { $env:KJK_KOTOR2 = $kotor2 }
-$env:KJK_JA = $academy
+# The game reads Jedi Academy's own four archives and nothing else. Movie
+# Duels installs its files into the same folder, where they would replace
+# Jedi Academy's animations, so the four are copied once into a folder of
+# their own here (about 1 GB). The install itself is only read.
+$cleanAcademy = Join $here 'jedi-academy'
+$cleanBase = Join $cleanAcademy 'base'
+$todo = New-Object System.Collections.Generic.List[string]
+foreach ($name in 'assets0.pk3', 'assets1.pk3', 'assets2.pk3', 'assets3.pk3') {
+    $from = Join $academy (Join 'GameData' (Join 'base' $name))
+    $to = Join $cleanBase $name
+    if (-not (Test-Path -LiteralPath $from -PathType Leaf)) { Stop-With @("Jedi Academy's $name is missing. Reinstall Jedi Academy.") }
+    if (-not (Test-Path -LiteralPath $to -PathType Leaf) -or (Get-Item -LiteralPath $to).Length -ne (Get-Item -LiteralPath $from).Length) { $todo.Add($name) }
+}
+if ($todo.Count -gt 0) {
+    [void](New-Item -ItemType Directory -Path $cleanBase -Force)
+    Add-Type -AssemblyName System.Drawing
+    $wait = New-Object System.Windows.Forms.Form
+    $wait.Text = 'KOTOR Academy'
+    $wait.StartPosition = 'CenterScreen'
+    $wait.FormBorderStyle = 'FixedDialog'
+    $wait.ControlBox = $false
+    $wait.ClientSize = New-Object System.Drawing.Size(420, 90)
+    $note = New-Object System.Windows.Forms.Label
+    $note.Text = 'Getting Jedi Academy''s files ready. This happens once and takes about a minute.'
+    $note.TextAlign = 'MiddleCenter'
+    $note.Dock = 'Fill'
+    $wait.Controls.Add($note)
+    $wait.Show()
+    [System.Windows.Forms.Application]::DoEvents()
+    foreach ($name in $todo) {
+        Copy-Item -LiteralPath (Join $academy (Join 'GameData' (Join 'base' $name))) -Destination (Join $cleanBase $name) -Force
+        [System.Windows.Forms.Application]::DoEvents()
+    }
+    $wait.Close()
+    $wait.Dispose()
+}
+$env:KJK_JA = $cleanAcademy
 $env:KJK_MOVIEDUELS = $duels
 
 # Optional: loose KOTOR I mod files (textures, models) in the mods folder.
@@ -304,16 +335,16 @@ function Pick-Game([string]$picture) {
 $desktop = [Environment]::GetFolderPath('Desktop')
 $shortcut = Join $desktop 'KOTOR Academy.lnk'
 if ($desktop -and -not $named.ContainsKey('SHORTCUT') -and -not (Test-Path -LiteralPath $shortcut)) {
-    Say ''
     if (Ask-Yes 'Put a KOTOR Academy shortcut on your desktop?') {
         $link = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
-        $link.TargetPath = Join $here 'Play KOTOR Academy.cmd'
+        $link.TargetPath = Join $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'
+        $link.Arguments = '-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "' + (Join $here 'play.ps1') + '"'
+        $link.WindowStyle = 7
         $link.WorkingDirectory = $here
         $link.IconLocation = "$game,0"
         $link.Description = 'KOTOR Academy'
         $link.Save()
         Save-Path 'SHORTCUT' 'yes'
-        Say 'Shortcut made.'
     } else {
         Save-Path 'SHORTCUT' 'no'
     }
@@ -334,11 +365,6 @@ if ($kotor1 -and $kotor2) {
 }
 $env:KJK_CAMPAIGN = $campaign
 
-Say 'Starting KOTOR Academy...'
-if ($kotor1) { Say "  KOTOR I:      $kotor1" }
-if ($kotor2) { Say "  KOTOR II:     $kotor2" }
-Say "  Jedi Academy: $academy"
-Say "  Movie Duels:  $duels"
 if ($args.Count -gt 0) {
     Start-Process -FilePath $game -WorkingDirectory $here -ArgumentList $args
 } else {
