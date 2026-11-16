@@ -12,4 +12,6 @@ KOTOR Academy was made with AI tools. Where AI was used:
 
 **Game content:** the download contains no AI-generated voices, dialogue, music, models or textures. Everything you see and hear in the game comes from your own copies of the games and from Movie Duels.
 
+**Launcher art:** the cover picture shown in the launcher's game picker window was made with an AI image tool. It is the only AI-generated picture in the download and it is not used inside the game.
+
 **What I did:** I set the goals, played and tested in game, chose how combat looks and feels, approved the balance, and decided what ships.
