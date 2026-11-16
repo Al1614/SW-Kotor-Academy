@@ -225,6 +225,115 @@ if ((Test-Path -LiteralPath $arena -PathType Container) -and (Test-Path -Literal
     }
 }
 
+# A window asks which game to play: KOTOR on the left, KOTOR II on the
+# right, a game that is not installed greyed out. Closed without a choice:
+# $null. $picture draws the window into a file instead (for review).
+function Pick-Game([string]$picture) {
+    Add-Type -AssemblyName System.Windows.Forms
+    Add-Type -AssemblyName System.Drawing
+    [System.Windows.Forms.Application]::EnableVisualStyles()
+    $gold = [System.Drawing.Color]::FromArgb(236, 186, 84)
+    $coverFile = Join $here 'cover.jpg'
+    $cover = $null
+    if (Test-Path -LiteralPath $coverFile -PathType Leaf) { $cover = [System.Drawing.Image]::FromFile($coverFile) }
+    $width = 520
+    $top = 0
+    if ($cover) { $width = $cover.Width; $top = $cover.Height }
+    $form = New-Object System.Windows.Forms.Form
+    $form.Text = 'KOTOR Academy'
+    $form.StartPosition = 'CenterScreen'
+    $form.FormBorderStyle = 'FixedDialog'
+    $form.MaximizeBox = $false
+    $form.MinimizeBox = $false
+    $form.BackColor = [System.Drawing.Color]::FromArgb(6, 6, 8)
+    $form.ClientSize = New-Object System.Drawing.Size($width, ($top + 78))
+    if ($cover) {
+        $art = New-Object System.Windows.Forms.PictureBox
+        $art.Image = $cover
+        $art.SetBounds(0, 0, $width, $top)
+        $form.Controls.Add($art)
+    }
+    $gap = 12
+    $each = [int](($width - 3 * $gap) / 2)
+    $left = $gap
+    foreach ($choice in @(@('k1', 'KOTOR', $kotor1), @('tsl', 'KOTOR II', $kotor2))) {
+        $button = New-Object System.Windows.Forms.Button
+        $button.Text = $choice[1]
+        $button.Tag = $choice[0]
+        $button.Enabled = [bool]$choice[2]
+        $button.Font = New-Object System.Drawing.Font('Georgia', 15, [System.Drawing.FontStyle]::Bold)
+        $button.FlatStyle = 'Flat'
+        $button.FlatAppearance.BorderColor = $gold
+        $button.FlatAppearance.BorderSize = 2
+        $button.FlatAppearance.MouseOverBackColor = [System.Drawing.Color]::FromArgb(60, 34, 10)
+        $button.ForeColor = $gold
+        $button.BackColor = [System.Drawing.Color]::FromArgb(24, 14, 6)
+        $button.Cursor = [System.Windows.Forms.Cursors]::Hand
+        $button.SetBounds($left, ($top + $gap), $each, 54)
+        $button.Add_Click({ $form.Tag = $this.Tag; $form.Close() })
+        $form.Controls.Add($button)
+        $left += $each + $gap
+    }
+    if ($picture) {
+        $form.Show()
+        [System.Windows.Forms.Application]::DoEvents()
+        $shot = New-Object System.Drawing.Bitmap($form.ClientSize.Width, $form.ClientSize.Height)
+        $paint = [System.Drawing.Graphics]::FromImage($shot)
+        $paint.Clear($form.BackColor)
+        foreach ($control in @($form.Controls)) {
+            $piece = New-Object System.Drawing.Bitmap($control.Width, $control.Height)
+            $control.DrawToBitmap($piece, (New-Object System.Drawing.Rectangle(0, 0, $control.Width, $control.Height)))
+            $paint.DrawImage($piece, $control.Left, $control.Top)
+            $piece.Dispose()
+        }
+        $paint.Dispose()
+        $shot.Save($picture, [System.Drawing.Imaging.ImageFormat]::Png)
+        $shot.Dispose()
+        $form.Close()
+    } else {
+        [void]$form.ShowDialog()
+    }
+    $picked = [string]$form.Tag
+    $form.Dispose()
+    if ($cover) { $cover.Dispose() }
+    if ($picked) { return $picked }
+    return $null
+}
+
+# A desktop shortcut, offered once (the answer is kept in paths.txt).
+$desktop = [Environment]::GetFolderPath('Desktop')
+$shortcut = Join $desktop 'KOTOR Academy.lnk'
+if ($desktop -and -not $named.ContainsKey('SHORTCUT') -and -not (Test-Path -LiteralPath $shortcut)) {
+    Say ''
+    if (Ask-Yes 'Put a KOTOR Academy shortcut on your desktop?') {
+        $link = (New-Object -ComObject WScript.Shell).CreateShortcut($shortcut)
+        $link.TargetPath = Join $here 'Play KOTOR Academy.cmd'
+        $link.WorkingDirectory = $here
+        $link.IconLocation = "$game,0"
+        $link.Description = 'KOTOR Academy'
+        $link.Save()
+        Save-Path 'SHORTCUT' 'yes'
+        Say 'Shortcut made.'
+    } else {
+        Save-Path 'SHORTCUT' 'no'
+    }
+}
+
+if ($env:KOTORACADEMY_SELECTOR_PICTURE) {
+    [void](Pick-Game $env:KOTORACADEMY_SELECTOR_PICTURE)
+    exit 0
+}
+if ($kotor1 -and $kotor2) {
+    $campaign = Pick-Game ''
+    # The window closed without a choice: nothing launches.
+    if (-not $campaign) { exit 0 }
+} elseif ($kotor2) {
+    $campaign = 'tsl'
+} else {
+    $campaign = 'k1'
+}
+$env:KJK_CAMPAIGN = $campaign
+
 Say 'Starting KOTOR Academy...'
 if ($kotor1) { Say "  KOTOR I:      $kotor1" }
 if ($kotor2) { Say "  KOTOR II:     $kotor2" }
