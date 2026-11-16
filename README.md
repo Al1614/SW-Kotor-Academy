@@ -93,9 +93,24 @@ These are the mods used in the project's videos. Copy their files into `mods` th
 - [Weapon Model Overhaul](https://www.nexusmods.com/kotor/mods/1096) with its [Texture Rework](https://www.nexusmods.com/kotor/mods/8): better weapons and lightsaber hilts.
 - [Revan Items](https://deadlystream.com/files/file/85-revan-items/): Revan's robes and lightsabers.
 
-### Practice arena for KOTOR I
+### The combat practice arena
 
-KOTOR II's practice arena works straight away. KOTOR I's needs one more mod, ARK07's **KOTOR Duel Room 1.0**: make a folder named `arena` inside your KOTOR Academy folder and unpack that mod into it. The story does not need it.
+The arena is a room where you can fight practice battles without touching your story.
+
+**How to open it:** in the game, walk up to a computer panel named **Combat Practice** and use it. You will find one:
+
+- **KOTOR I:** on the Ebon Hawk beside the workbench, and at the Jedi Council on Dantooine.
+- **KOTOR II:** beside the workbench in the medical bay where the game begins on Peragus, and on the Ebon Hawk beside the workbench.
+
+**KOTOR II:** the arena works straight away. Nothing extra to install.
+
+**KOTOR I:** the arena needs one more mod, ARK07's **KOTOR Duel Room 1.0**:
+
+1. Download the mod and unpack it (right-click, **Extract All**).
+2. Open your **KOTOR Academy** folder and make a new folder inside it named `arena`.
+3. Copy everything from the unpacked mod into the `arena` folder.
+
+The story does not need this mod. Without it, KOTOR I plays normally and only the arena is missing.
 
 ## Removing KOTOR Academy
 
