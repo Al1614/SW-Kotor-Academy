@@ -94,7 +94,7 @@ The short version:
 - **You block yourself.** Hold Guard to raise your blade; time an attack press for a perfect parry; deflect blaster bolts with a lightsaber.
 - **Force powers are real time**, cost what they always did, and keep the original effects.
 
-The full explanation, with the numbers, is in [How combat works](docs/COMBAT.md). Every rule the game plays by is in the [rulebook](docs/RULEBOOK.md).
+The full explanation, with the numbers, is in [How combat works](docs/COMBAT.md). Every rule the game plays by is in the [rulebook](docs/RULEBOOK.md). Console cheats for single-player are in the [cheat sheet](docs/CHEATS.md).
 
 ## Known issues
 
