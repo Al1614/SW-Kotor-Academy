@@ -10,52 +10,103 @@ KOTOR Academy is an unofficial, free, non-commercial fan project. It contains no
 
 ## What you need
 
-| | |
-|---|---|
-| **Windows 10 or 11**, 64-bit | A graphics card that supports DirectX 12 or Vulkan |
-| **KOTOR I and/or KOTOR II** | Any PC copy. You only need the one you want to play. Tested with the Steam versions. |
-| **Jedi Knight: Jedi Academy** | Any PC copy. Tested with the Steam version. |
-| **Movie Duels** (mod for Jedi Academy) | **Update 6 + Patch AIO**. See below. |
+You need three things on your PC before KOTOR Academy will start:
 
-### Movie Duels: which version
+1. **KOTOR I or KOTOR II** (or both). You only need the one you want to play.
+2. **Star Wars Jedi Knight: Jedi Academy.**
+3. **Movie Duels**, a free mod for Jedi Academy.
 
-KOTOR Academy's saber styles, guard poses and hilts come from Movie Duels. It was built and tested with **Movie Duels - Update 6 + Patch AIO (Automatic Installation)**.
+Any PC copy of the games should work. Steam copies are the ones that have been tested.
 
-Download it from the [Movie Duels downloads page on ModDB](https://www.moddb.com/mods/movie-duels/downloads) and install it into your Jedi Academy folder with its installer.
+Your PC needs Windows 10 or 11 and a graphics card from roughly the last eight years.
 
-Newer Movie Duels updates (7 and 8) have not been tested yet and may not work.
+## How to install
 
-## Install
+### Step 1: Install the games
 
-1. Install **KOTOR I and/or KOTOR II**.
-2. Install **Jedi Academy**.
-3. Install **Movie Duels - Update 6 + Patch AIO** into Jedi Academy.
-4. Download **[KOTOR-Academy-alpha-windows.zip](../../raw/main/download/KOTOR-Academy-alpha-windows.zip)**. Do not use the green "Code" button; that downloads this page's files, not just the game.
-5. Extract the zip anywhere, for example your Desktop.
-6. Open the extracted folder and double-click **Play KOTOR Academy**. The first time, it offers to put a shortcut on your desktop. If you have both KOTOR I and KOTOR II, a window asks which one to play.
+Install KOTOR I and/or KOTOR II, and Jedi Academy, the normal way (for example from Steam). Start each one once to make sure it runs, then close it.
 
-The first time, Windows may show "Windows protected your PC" because the program is not signed. Click **More info**, then **Run anyway**.
+### Step 2: Install Movie Duels
 
-The launcher finds your games by itself, wherever they are installed. If it cannot find one, it asks you to point to that game's folder once and remembers it. If something is not installed, it tells you what and where to get it.
+1. Go to the [Movie Duels downloads page](https://www.moddb.com/mods/movie-duels/downloads).
+2. Download **Movie Duels - Update 6 + Patch AIO (Automatic Installation)**. Use this exact version; newer ones (Update 7 and 8) have not been tested and may not work.
+3. Run the file you downloaded and follow its steps. When it asks where to install, choose your Jedi Academy folder.
 
-### If a game is not found
+### Step 3: Download KOTOR Academy
 
-The launcher normally asks you for the folder. You can also set folders by hand: copy `paths.example.txt` to `paths.txt`, put the game's folder in it, and run **Play KOTOR Academy** again.
+Click this link: **[Download KOTOR Academy](../../raw/main/download/KOTOR-Academy-alpha-windows.zip)**
 
-### Uninstall
+Do not use the green "Code" button at the top of this page. That downloads the wrong thing.
 
-Delete the extracted folder. Saves and settings are in `%APPDATA%\kjk`; delete that folder too if you want them gone. Your KOTOR and Jedi Academy installs are never changed.
+### Step 4: Unpack it
 
-## Optional extras
+1. Find the file you just downloaded (usually in your Downloads folder). It is called `KOTOR-Academy-alpha-windows.zip`.
+2. Right-click it and choose **Extract All**, then click **Extract**.
+3. You now have a folder called **KOTOR Academy**. You can move it anywhere you like, for example your Desktop. Do not put it inside a game's folder.
 
-None of these are needed.
+### Step 5: Play
 
-- **In-game movies.** Install [FFmpeg](https://ffmpeg.org/download.html) so `ffmpeg` is on your PATH, and the games' cutscene movies will play. Without it they are skipped.
-- **KOTOR I texture and model mods.** Put loose mod files (`.tpc`, `.tga`, `.mdl`, `.mdx` and so on) into a `mods` folder next to **Play KOTOR Academy**. The project's videos use:
-  - [Vurt's KotOR Visual Resurgence](https://www.nexusmods.com/kotor/mods/1730?tab=files)
-  - [Weapon Model Overhaul](https://www.nexusmods.com/kotor/mods/1096) with the [Texture Rework](https://www.nexusmods.com/kotor/mods/8)
-  - [Revan Items](https://deadlystream.com/files/file/85-revan-items/)
-- **KOTOR I combat arena.** KOTOR II's practice arena works out of the box. KOTOR I's is switched off unless you add ARK07's KOTOR Duel Room 1.0 mod, whose room setup it reads: extract that mod into an `arena` folder next to **Play KOTOR Academy** (so that a `Modules\goroom.mod` file is somewhere inside it). The campaign does not need it.
+1. Open the **KOTOR Academy** folder.
+2. Double-click **Play KOTOR Academy**.
+3. If Windows shows a blue box saying "Windows protected your PC", click **More info**, then **Run anyway**. This appears because the program is new and unsigned.
+4. The first time, it asks if you want a shortcut on your desktop. Type **Y** and press Enter if you do.
+5. If you own both KOTOR games, a window asks which one to play. Click **KOTOR** or **KOTOR II**.
+
+That is it. Next time, just use the desktop shortcut.
+
+KOTOR Academy finds your games by itself. If it cannot find one, it tells you which, and lets you pick that game's folder. It never changes anything in your game folders.
+
+## Optional: add mods for better looks
+
+You do not need any of these. The game plays fine without them. They only change how KOTOR I looks.
+
+Every mod is added the same way:
+
+1. Open your **KOTOR Academy** folder.
+2. Make a new folder inside it and name it `mods`.
+3. Download the mod from its creator's page.
+4. Unpack the download (right-click, **Extract All**).
+5. Copy the mod's files into your `mods` folder. Copy the files themselves, not the folder they came in.
+
+Do this **before** you start a new game. Changing your mods later can stop your saved games from loading.
+
+### Hooded Jedi robes in the KOTOR II style
+
+Mod: [JC's Fashion Line I: Cloaked Jedi Robes for K1](https://deadlystream.com/files/file/1378-jcs-fashion-line-i-cloaked-jedi-robes-for-k1/) by JCarter426.
+
+1. Download and unpack it.
+2. Do **not** run its installer. Open the unpacked folder, then open `tslpatchdata`.
+3. Open one of these folders, depending on the colours you want:
+   - `k_bbb` for all-brown robes
+   - `k_brb` for brown, red and blue robes
+   - `k_brb-a` for the alternative brown, red and blue robes
+4. Copy every file in that folder into your `mods` folder, **except** `appearance.2da` and the files ending in `.ini` and `.rtf`.
+
+Jedi robes in KOTOR I now have the hood and cloak.
+
+### Sharper textures and better weapon models
+
+These are the mods used in the project's videos. Copy their files into `mods` the same way.
+
+- [Vurt's KotOR Visual Resurgence](https://www.nexusmods.com/kotor/mods/1730?tab=files): sharper worlds.
+- [Weapon Model Overhaul](https://www.nexusmods.com/kotor/mods/1096) with its [Texture Rework](https://www.nexusmods.com/kotor/mods/8): better weapons and lightsaber hilts.
+- [Revan Items](https://deadlystream.com/files/file/85-revan-items/): Revan's robes and lightsabers.
+
+### Practice arena for KOTOR I
+
+KOTOR II's practice arena works straight away. KOTOR I's needs one more mod, ARK07's **KOTOR Duel Room 1.0**: make a folder named `arena` inside your KOTOR Academy folder and unpack that mod into it. The story does not need it.
+
+## Removing KOTOR Academy
+
+Delete the **KOTOR Academy** folder and the desktop shortcut. Your games are untouched.
+
+## Help
+
+- **"KOTOR Academy cannot start yet"**: the message underneath says what is missing. Install that, then try again.
+- **It cannot find a game**: when it asks, answer **Y** and pick the folder where that game is installed.
+- **The story movies do not play**: they need a free program called [FFmpeg](https://ffmpeg.org/download.html) installed on your PC. Without it the movies are skipped and the game carries on.
+- **Where are my saves?** Press the Windows key, type `%APPDATA%\kjk` and press Enter. Delete that folder only if you want to wipe your saves and settings.
+- **Setting a game folder by hand**: copy `paths.example.txt`, name the copy `paths.txt`, and type the game's folder into it.
 
 ## Controls
 
@@ -101,7 +152,6 @@ The full explanation, with the numbers, is in [How combat works](docs/COMBAT.md)
 - Not every side quest and planet order has been played through by hand.
 - Movie Duels Update 7 and 8 are untested.
 - Only the Steam versions of the games have been tested. Other copies should work; tell us if one does not.
-- Manaan's Sonic Emitter shows a count of 255 on the HUD. It is unlimited.
 - An update can make a save from an older version refuse to load.
 - Adding, removing or changing files in the `mods` folder can make existing KOTOR I saves refuse to load. Decide on your mods before you start a playthrough.
 
@@ -122,10 +172,12 @@ KOTOR Academy stands on more than twenty years of community work. Thank you to e
 **KOTOR mods used in the project's videos and testing**
 
 - [Revan Items](https://deadlystream.com/files/file/85-revan-items/) by ChAiNz.2da: Revan's robes and lightsabers.
+- [JC's Fashion Line I: Cloaked Jedi Robes for K1](https://deadlystream.com/files/file/1378-jcs-fashion-line-i-cloaked-jedi-robes-for-k1/) by JCarter426: the hooded Jedi robes.
+- [Effixian's Jedi Knight Revan Robes](https://deadlystream.com/files/file/2135-effixians-jedi-knight-revan-robes-swgoh/) by Effixian: the Jedi Revan outfit.
 - [Weapon Model Overhaul](https://www.nexusmods.com/kotor/mods/1096) by Toasty Fresh.
 - [Weapon Model Overhaul Texture Rework](https://www.nexusmods.com/kotor/mods/8) by Fallen Guardian.
 - [Vurt's KotOR Visual Resurgence](https://www.nexusmods.com/kotor/mods/1730?tab=files) by Vurt.
-- [TSLRCM](https://deadlystream.com/files/file/578-tsl-restored-content-mod/) by Zbyl2, DarthStoney, Hassat Hunter, VarsityPuppet and contributors: part of the test setup.
+- [TSLRCM](https://deadlystream.com/files/file/578-tsl-restored-content-mod/) by Zbyl2, DarthStoney, Hassat Hunter, VarsityPuppet and contributors: the restored content mod for KOTOR II.
 - KOTOR Duel Room 1.0 by ARK07, with InSidious: the room setup read by KOTOR I's optional combat arena.
 
 **Inspiration**
