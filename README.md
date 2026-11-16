@@ -101,7 +101,6 @@ The full explanation, with the numbers, is in [How combat works](docs/COMBAT.md)
 - Not every side quest and planet order has been played through by hand.
 - Movie Duels Update 7 and 8 are untested.
 - Only the Steam versions of the games have been tested. Other copies should work; tell us if one does not.
-- On the Leviathan (KOTOR I), a companion can stay behind in a fight and the lift asks you to gather your party. Walk back to them and finish the fight.
 - Manaan's Sonic Emitter shows a count of 255 on the HUD. It is unlimited.
 - An update can make a save from an older version refuse to load.
 - Adding, removing or changing files in the `mods` folder can make existing KOTOR I saves refuse to load. Decide on your mods before you start a playthrough.
