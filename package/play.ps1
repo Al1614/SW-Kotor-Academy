@@ -365,6 +365,11 @@ if ($kotor1 -and $kotor2) {
 }
 $env:KJK_CAMPAIGN = $campaign
 
+# DirectX 12 is the graphics mode the game is tested with. Left to choose,
+# it picks Vulkan, which is untested and under which controllers were seen to
+# drop out. Set WGPU_BACKEND yourself to use another.
+if (-not $env:WGPU_BACKEND) { $env:WGPU_BACKEND = 'dx12' }
+
 if ($args.Count -gt 0) {
     Start-Process -FilePath $game -WorkingDirectory $here -ArgumentList $args
 } else {
