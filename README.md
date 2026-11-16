@@ -34,7 +34,8 @@ Install KOTOR I and/or KOTOR II, and Jedi Academy, the normal way (for example f
 
 ### Step 3: Download KOTOR Academy
 
-Click this link: **[Download KOTOR Academy](../../raw/main/download/KOTOR-Academy-alpha-windows.zip)**
+1. Open the **[KOTOR Academy Releases page](../../releases)**.
+2. Find the newest release at the top. Under **Assets**, click `KOTOR-Academy-alpha-windows.zip`. (If you only see the word Assets, click it to open the list.)
 
 Do not use the green "Code" button at the top of this page. That downloads the wrong thing.
 
