@@ -129,6 +129,7 @@ Delete the **KOTOR Academy** folder and the desktop shortcut. Your games are unt
 - **It cannot find a game**: when it asks, click **Yes** and pick the folder where that game is installed.
 - **The story movies do not play**: they need a free program called [FFmpeg](https://ffmpeg.org/download.html) installed on your PC. Without it the movies are skipped and the game carries on.
 - **The second locked door on the Endar Spire will not open**: Trask opens it. Click Trask's portrait to switch to him, look at the door, change the action from Open to **Security** (mouse wheel, or D-pad right on a controller), then use it. Switch back to your own character afterwards.
+- **The door after that one stays locked, and the room before it was empty**: this was a bug in earlier downloads, when the Security door opened while Trask was still talking. Download the newest release, then load a save from before that door or start a new game. A save made after it happened stays stuck.
 - **Armour looks see-through**: a texture mod is missing its `.txi` files. Copy the pack's `.txi` files next to its textures (in `mods`, or in your KOTOR `Override` folder if that is where the pack is), or remove that texture to get the original back.
 - **Where are my saves?** Press the Windows key, type `%APPDATA%\kjk` and press Enter. Delete that folder only if you want to wipe your saves and settings.
 - **Setting a game folder by hand**: copy `paths.example.txt`, name the copy `paths.txt`, and type the game's folder into it.
