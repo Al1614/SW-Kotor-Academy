@@ -12,9 +12,11 @@ KOTOR Academy is an unofficial, free, non-commercial fan project. It contains no
 
 You need three things on your PC before KOTOR Academy will start:
 
-1. **KOTOR I or KOTOR II** (or both). You only need the one you want to play.
+1. **KOTOR II.** It is always needed, even if you only want to play KOTOR I, because KOTOR Academy draws its menus with KOTOR II's files.
 2. **Star Wars Jedi Knight: Jedi Academy.**
 3. **Movie Duels**, a free mod for Jedi Academy.
+
+**KOTOR I** is only needed if you want to play KOTOR I. With KOTOR II alone you can play KOTOR II.
 
 Any PC copy of the games should work. Steam copies are the ones that have been tested.
 
@@ -24,7 +26,7 @@ Your PC needs Windows 10 or 11 and a graphics card from roughly the last eight y
 
 ### Step 1: Install the games
 
-Install KOTOR I and/or KOTOR II, and Jedi Academy, the normal way (for example from Steam). Start each one once to make sure it runs, then close it.
+Install KOTOR II and Jedi Academy (and KOTOR I, if you want to play it) the normal way (for example from Steam). Start each one once to make sure it runs, then close it.
 
 ### Step 2: Install Movie Duels
 
@@ -52,6 +54,7 @@ Do not use the green "Code" button at the top of this page. That downloads the w
 3. If Windows shows a blue box saying "Windows protected your PC", click **More info**, then **Run anyway**. This appears because the program is new and unsigned.
 4. The first time, it asks if you want a shortcut on your desktop. Click **Yes** if you do. It also copies a few Jedi Academy files into its own folder (about 1 GB); this happens once.
 5. If you own both KOTOR games, a window asks which one to play. Click **KOTOR** or **KOTOR II**.
+6. The very first time, a setup page lists the games it found. Click **Import and play**. If you do not own KOTOR I, it says so and lets you go on with KOTOR II.
 
 That is it. Next time, just use the desktop shortcut.
 

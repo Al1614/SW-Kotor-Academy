@@ -135,16 +135,21 @@ $kotor1 = Find-Game 'KOTOR1' 'swkotor' 'Knights of the Old Republic(?!.*(II|2|Si
 $kotor2 = Find-Game 'KOTOR2' 'Knights of the Old Republic II' 'Knights of the Old Republic.*(II|2|Sith Lords)' @('GOG Games\Star Wars - KotOR2', 'Program Files (x86)\GOG Galaxy\Games\Star Wars - KotOR2', 'Program Files (x86)\LucasArts\SWKotOR2') $kotor2Marker
 $academy = Find-Game 'JEDIACADEMY' 'Jedi Academy' 'Jedi Academy' @('GOG Games\Star Wars Jedi Knight - Jedi Academy', 'Program Files (x86)\GOG Galaxy\Games\Star Wars Jedi Knight - Jedi Academy', 'Program Files (x86)\LucasArts\Star Wars Jedi Knight Jedi Academy') $academyMarker
 
-# Not found by itself: the player points at it, once.
-if (-not $kotor1 -and -not $kotor2) {
-    if (Ask-Yes "Knights of the Old Republic was not found on this PC.`n`nIs KOTOR I installed? Click Yes to choose its folder.") {
-        $kotor1 = Ask-Folder 'Knights of the Old Republic' $kotor1Marker
-        if ($kotor1) { Save-Path 'KOTOR1' $kotor1 }
-    }
-    if (-not $kotor1 -and (Ask-Yes 'Is KOTOR II installed? Click Yes to choose its folder.')) {
+# Not found by itself: the player points at it, once. KOTOR II is always
+# needed (every menu is drawn with its files, KOTOR I's too); KOTOR I only
+# to play KOTOR I, so it is asked for once and then left alone.
+if (-not $kotor2) {
+    if (Ask-Yes "Knights of the Old Republic II was not found on this PC.`n`nKOTOR Academy needs it, even to play KOTOR I. Is it installed? Click Yes to choose its folder.") {
         $kotor2 = Ask-Folder 'Knights of the Old Republic II' $kotor2Marker
         if ($kotor2) { Save-Path 'KOTOR2' $kotor2 }
     }
+}
+if ($kotor2 -and -not $kotor1 -and -not $named.ContainsKey('KOTOR1ASKED')) {
+    if (Ask-Yes "Knights of the Old Republic (the first game) was not found on this PC.`n`nIt is only needed to play KOTOR I. Is it installed? Click Yes to choose its folder, or No to play KOTOR II only.") {
+        $kotor1 = Ask-Folder 'Knights of the Old Republic' $kotor1Marker
+        if ($kotor1) { Save-Path 'KOTOR1' $kotor1 }
+    }
+    if (-not $kotor1) { Save-Path 'KOTOR1ASKED' 'yes' }
 }
 if (-not $academy) {
     if (Ask-Yes "Jedi Knight: Jedi Academy was not found on this PC.`n`nIs it installed? Click Yes to choose its folder.") {
@@ -181,9 +186,9 @@ if ($academy -and -not $duels) {
 }
 
 $missing = New-Object System.Collections.Generic.List[string]
-if (-not $kotor1 -and -not $kotor2) {
-    $missing.Add('- Star Wars: Knights of the Old Republic or Knights of the Old Republic II is needed.')
-    $missing.Add('  Install at least one of them.')
+if (-not $kotor2) {
+    $missing.Add('- Star Wars: Knights of the Old Republic II is needed, even to play KOTOR I')
+    $missing.Add('  (the menus are drawn with its files). Install it.')
 }
 if (-not $academy) {
     $missing.Add('- Star Wars Jedi Knight: Jedi Academy is needed. Install it.')
