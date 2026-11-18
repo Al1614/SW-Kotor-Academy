@@ -374,7 +374,8 @@ $env:KJK_CAMPAIGN = $campaign
 # DirectX 12 is the graphics mode the game is tested with. Left to choose,
 # it picks Vulkan, which is untested and under which controllers were seen to
 # drop out. Set WGPU_BACKEND yourself to use another.
-$forced = (-not $env:WGPU_BACKEND) -and (-not $named.ContainsKey('GRAPHICS'))
+$chosen = [bool]$env:WGPU_BACKEND
+$forced = (-not $chosen) -and (-not $named.ContainsKey('GRAPHICS'))
 if ($forced) { $env:WGPU_BACKEND = 'dx12' }
 
 # The game is started in this launcher's own hidden console: started in a
@@ -421,6 +422,17 @@ if ($slow -or (Died $run)) {
         $run = Start-Game
         $again = -not (Died $run)
         if ($again) { Save-Path 'GRAPHICS' 'auto' }
+    } elseif (-not $chosen) {
+        # The mode it was left to choose (remembered from an earlier start)
+        # no longer starts either: DirectX 12 again, and if that holds,
+        # forget the remembered choice.
+        $env:WGPU_BACKEND = 'dx12'
+        $run = Start-Game
+        $again = -not (Died $run)
+        if ($again -and (Test-Path -LiteralPath $pathsFile -PathType Leaf)) {
+            $kept = @(Get-Content -LiteralPath $pathsFile | Where-Object { $_ -notmatch '^\s*GRAPHICS\s*=' })
+            Set-Content -LiteralPath $pathsFile -Value $kept -Encoding UTF8
+        }
     }
     if (-not $again) {
         Tell ("The game closed right after starting.`n`nIts report is in the newest folder here:`n" + (Join $env:APPDATA 'kjk\logs') + "`n`nPlease send the kjk.log file from that folder with your bug report.") 'Warning'
