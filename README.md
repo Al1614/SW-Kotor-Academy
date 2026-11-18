@@ -70,11 +70,11 @@ Every mod is added the same way:
 2. Open the `mods` folder inside it. It is already there, empty and ready.
 3. Download the mod from its creator's page.
 4. Unpack the download (right-click, **Extract All**).
-5. Copy the mod's files into the `mods` folder. Copy the files themselves, not the folder they came in.
+5. Copy the mod's files into the `mods` folder. Textures inside folders are found too, so a texture pack can be copied in as the folder it unpacked to. Other kinds of files (such as `.2da`, `.uti` or `.mdl`) must sit directly in `mods`.
 
-**Mods already in your KOTOR folder count too.** KOTOR Academy also reads the `Override` folder inside your KOTOR I and KOTOR II installs, so mods you installed there for the original games are used as well. If something looks wrong, that folder is the first place to check.
+**Mods already in your KOTOR folder count too.** KOTOR Academy also reads the `Override` folder inside your KOTOR I and KOTOR II installs, the way the original games do, so mods you installed there are used as well. For KOTOR II, folders inside `Override` are read too. The `mods` folder is for KOTOR I only; KOTOR II mods go in KOTOR II's own `Override`. If the same file is in both places, the one in `mods` wins.
 
-**Copy the `.txi` files.** Texture packs come with small files ending in `.txi`. Copy them along with the textures. Without them, shiny armour such as the Sith soldiers' can turn see-through.
+**Texture packs without `.txi` files work.** A replacement texture that comes without its small `.txi` settings file uses the original texture's settings, so shiny armour stays shiny. If a pack does include `.txi` files, copy them too: they are used.
 
 Do this **before** you start a new game. Changing your mods later can stop your saved games from loading.
 
@@ -130,7 +130,8 @@ Delete the **KOTOR Academy** folder and the desktop shortcut. Your games are unt
 - **The story movies do not play**: they need a free program called [FFmpeg](https://ffmpeg.org/download.html) installed on your PC. Without it the movies are skipped and the game carries on.
 - **The second locked door on the Endar Spire will not open**: Trask opens it. Click Trask's portrait to switch to him, look at the door, change the action from Open to **Security** (mouse wheel, or D-pad right on a controller), then use it. Switch back to your own character afterwards.
 - **The door after that one stays locked, and the room before it was empty**: this was a bug in earlier downloads, when the Security door opened while Trask was still talking. Download the newest release, then load a save from before that door or start a new game. A save made after it happened stays stuck.
-- **Armour looks see-through**: a texture mod is missing its `.txi` files. Copy the pack's `.txi` files next to its textures (in `mods`, or in your KOTOR `Override` folder if that is where the pack is), or remove that texture to get the original back.
+- **A mod's texture looks wrong**: check the same file is not also in your KOTOR `Override` folder or in `mods` from another pack. The one in `mods` is used first, then `Override`, then the game's own.
+- **The game closes as soon as it starts**: start it again. The launcher tries DirectX 12 first and then lets your graphics card choose, and switches back by itself if the mode it remembered stops working. Your graphics card needs DirectX 12 or Vulkan; if it still closes, update the graphics driver. To make the launcher forget its remembered choice by hand, open `paths.txt` in your KOTOR Academy folder and delete the line `GRAPHICS=auto`.
 - **Where are my saves?** Press the Windows key, type `%APPDATA%\kjk` and press Enter. Delete that folder only if you want to wipe your saves and settings.
 - **Setting a game folder by hand**: copy `paths.example.txt`, name the copy `paths.txt`, and type the game's folder into it.
 
@@ -165,13 +166,25 @@ To equip weapons, press **I**, open the Equipment tab, pick a hand and choose a 
 
 The short version:
 
-- **Hits are real.** A swing or shot hits when it touches the target. There is no dice roll that makes a clean hit miss.
-- **Skill sets damage.** Your attack bonus against the target's Defense decides how much of your damage a hit deals, using the original game's to-hit formula.
-- **Defense reduces every hit** instead of making some miss.
+- **Your aim, then the dice.** A swing or shot has to touch the target. Each one that does makes the original game's attack roll against Defense: a hit deals full damage, a miss deals nothing.
+- **Enemies play by the same roll.** High Defense makes their attacks miss.
+- **Two combat modes.** KOTOR Academy Combat (the default) is described here. Fast Combat, the first alpha's combat with no misses, can be chosen in Options → Gameplay.
 - **You block yourself.** Hold Guard to raise your blade; time an attack press for a perfect parry; deflect blaster bolts with a lightsaber.
 - **Force powers are real time**, cost what they always did, and keep the original effects.
 
 The full explanation, with the numbers, is in [How combat works](docs/COMBAT.md). Every rule the game plays by is in the [rulebook](docs/RULEBOOK.md). Console cheats for single-player are in the [cheat sheet](docs/CHEATS.md).
+
+## What is new in this update
+
+- **KOTOR II's galaxy map opens.** You can leave Peragus for Telos and travel between planets from the map.
+- **KOTOR Academy Combat.** Attacks that land now make the original game's attack roll: a hit deals full damage, a miss deals nothing, and a miss against a blade shows as a block. The first alpha's combat is still there as **Fast Combat** in Options → Gameplay.
+- **Difficulty works as in the original games**: Padawan, Knight and Master change the damage your party takes.
+- **Item wheel pins.** In the inventory (**I**), select an item and choose **Pin to wheel**. Hold **6**, point at a slice and release to use it. Up to ten pins; grenades can be pinned and thrown from the wheel.
+- **Auto Level Up**, for your character and, as an option, for companions.
+- **Mods load more like the original games**: the `Override` folder wins over a level's own files, KOTOR II reads folders inside `Override`, texture packs can sit in folders inside `mods`, and textures without `.txi` files keep their shine.
+- **KOTOR II with The Sith Lords Restored Content Mod** has been played from start to credits in automated testing, with fixes for the rebuilt Enclave's exit and Visas Marr's fight aboard the Ebon Hawk.
+- **The launcher recovers** when a remembered graphics mode stops starting.
+- Menu and control fixes, including switching party member from the pause menu.
 
 ## Known issues
 
@@ -179,7 +192,9 @@ The full explanation, with the numbers, is in [How combat works](docs/COMBAT.md)
 - Movie Duels Update 7 and 8 are untested.
 - Only the Steam versions of the games have been tested. Other copies should work; tell us if one does not.
 - An update can make a save from an older version refuse to load.
-- Adding, removing or changing files in the `mods` folder can make existing KOTOR I saves refuse to load. Decide on your mods before you start a playthrough.
+- Adding, removing or changing files in the `mods` folder or in a game's `Override` folder can make existing saves refuse to load. Decide on your mods before you start a playthrough.
+- This update reads `Override` differently, so a save made with mods in `Override` on an older version may refuse to load.
+- Your graphics card needs DirectX 12 or Vulkan. Older cards with neither cannot start the game.
 
 ## Credits
 

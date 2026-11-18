@@ -4,7 +4,7 @@
 
 Every number the game's own rules use, and what it does. The game reads these very values: change one in `data/rules/`, build, and the game plays by it. The numbers a game's data holds (a weapon's dice, a power's cost, a feat's row) are the game install's own; `kjk rules` lists them as the game reads them, beside these.
 
-Edition `6c448ff2fd71d70e`.
+Edition `1efebe483cd9b86c`.
 
 ## Contents
 
@@ -464,16 +464,19 @@ standing still. [Use] held over an unconscious party member revives them.
 
 ## <a id="combat"></a>Combat
 
-An attack hits when the blade or bolt strikes the target's body. The damage
-it deals is sized by the attacker's chance to hit, as on a d20 attack roll.
+An attack lands when the blade or bolt strikes the target's body. Every
+attack that lands makes KOTOR's attack roll: a d20 plus the attack bonus
+against Defense. A miss deals nothing; a hit deals the weapon's whole damage
+roll. The roll is the same for the party and its enemies, and for every
+weapon. There is no limit to how often a character attacks.
 
 ### <a id="combat-damage"></a>Damage
 
 A weapon's damage is its damage roll, plus its bonus damage, the wielder's
 Strength modifier (melee weapons only) and Weapon Specialization. A critical
 hit multiplies this roll. Sneak Attack damage is added, and is not
-multiplied. The target's resistances and damage reduction are subtracted,
-and the rest is multiplied by the chance to hit and by the combat pace.
+multiplied. The target's resistances and damage reduction are subtracted.
+A swing that cuts one body several times is one attack with one roll.
 
 A weapon with several damage types deals the type its target resists least.
 A target immune to a damage type takes no damage of that type.
@@ -510,47 +513,81 @@ A party member's blaster shot deals 3 times the damage its rate of fire carries.
 
 <sub>Source: the owner's balance, 2026-11-11: a game-wide sweep found 70 to 100 rifle shots to fell a typical foe of level 5 and up. Code: `sim::world::firing`.</sub>
 
-<a id="combat-damage-foe-share"></a>**Foes' Weapon Damage** = **60%** (`600 ‰`) · `combat.damage.foe_share`
+<a id="combat-damage-foe-share"></a>**Foes' Weapon Damage** = **100%** (`1000 ‰`) · `combat.damage.foe_share`
 
-A creature outside the party deals 60% of the damage its blades' rhythm and its shots' pace carry. Natural attacks and Force powers have their own rules.
+A creature outside the party deals 100% of the damage its blades' rhythm and its shots' pace carry. Natural attacks and Force powers have their own rules.
 
-<sub>Source: the owner's balance, 2026-11-11: a typical foe of level 1 to 4 dealt 40% of a matched character's vitality a round, a Sith soldier 168%. Code: `sim::world::sabers, sim::world::firing`.</sub>
+<sub>Source: KOTOR: a foe's weapon deals as the party's does. (500 and 600 from 2026-11-11, from a sweep that counted every shot a hit; the owner's play on Master, 2026-11-17, found the Taris duel ring no challenge at level 3). Code: `sim::world::sabers, sim::world::firing`.</sub>
 
-<a id="combat-damage-master-taken"></a>**Master: Damage the Party Takes** = **110%** (`1100 ‰`) · `combat.damage.master_taken`
+<a id="combat-damage-master-taken"></a>**Master: Damage the Party Takes** = **150%** (`1500 ‰`) · `combat.damage.master_taken`
 
-On Master difficulty the player and the party take 110% of the damage an enemy deals them.
+On Master difficulty the player and the party take 150% of the damage an enemy deals them.
 
-<sub>Source: the owner's playtest, 2026-11-13: a level 12 apprentice beat Master Vrook easily on Master; a tiny bit harder. Code: `sim::world::harm`.</sub>
+<sub>Source: KOTOR and The Sith Lords: difficultyopt.2da's Difficult row, 1.5 (the owner, 2026-11-17; 1100 from the playtest of 2026-11-13). Code: `sim::world::harm`.</sub>
 
-<a id="combat-damage-master-dealt"></a>**Master: Damage the Party Deals** = **95%** (`950 ‰`) · `combat.damage.master_dealt`
+<a id="combat-damage-master-dealt"></a>**Master: Damage the Party Deals** = **100%** (`1000 ‰`) · `combat.damage.master_dealt`
 
-On Master difficulty the player and the party deal 95% of their damage to enemies.
+On Master difficulty the player and the party deal 100% of their damage to enemies.
 
-<sub>Source: the owner's playtest, 2026-11-13. Code: `sim::world::harm`.</sub>
+<sub>Source: KOTOR and The Sith Lords: difficultyopt.2da's Difficult row, 1.5, changes only the damage the party takes (the owner, 2026-11-17: the three difficulties as KOTOR has them). Code: `sim::world::harm`.</sub>
 
-<a id="combat-damage-knight-taken"></a>**Knight: Damage the Party Takes** = **80%** (`800 ‰`) · `combat.damage.knight_taken`
+<a id="combat-damage-knight-taken"></a>**Knight: Damage the Party Takes** = **100%** (`1000 ‰`) · `combat.damage.knight_taken`
 
-On Knight difficulty the player and the party take 80% of the damage an enemy deals them.
+On Knight difficulty the player and the party take 100% of the damage an enemy deals them.
 
-<sub>Source: the owner's difficulty modes, 2026-11-12: Knight a slight ease. Code: `sim::world::harm`.</sub>
+<sub>Source: KOTOR and The Sith Lords: difficultyopt.2da's Normal row, 1.0, changes only the damage the party takes (the owner, 2026-11-17: the three difficulties as KOTOR has them). Code: `sim::world::harm`.</sub>
 
-<a id="combat-damage-knight-dealt"></a>**Knight: Damage the Party Deals** = **110%** (`1100 ‰`) · `combat.damage.knight_dealt`
+<a id="combat-damage-knight-dealt"></a>**Knight: Damage the Party Deals** = **100%** (`1000 ‰`) · `combat.damage.knight_dealt`
 
-On Knight difficulty the player and the party deal 110% of their damage to enemies.
+On Knight difficulty the player and the party deal 100% of their damage to enemies.
 
-<sub>Source: the owner's difficulty modes, 2026-11-12. Code: `sim::world::harm`.</sub>
+<sub>Source: KOTOR and The Sith Lords: difficultyopt.2da's Normal row, 1.0, changes only the damage the party takes (the owner, 2026-11-17: the three difficulties as KOTOR has them). Code: `sim::world::harm`.</sub>
 
-<a id="combat-damage-padawan-taken"></a>**Padawan: Damage the Party Takes** = **55%** (`550 ‰`) · `combat.damage.padawan_taken`
+<a id="combat-damage-padawan-taken"></a>**Padawan: Damage the Party Takes** = **50%** (`500 ‰`) · `combat.damage.padawan_taken`
 
-On Padawan difficulty the player and the party take 55% of the damage an enemy deals them.
+On Padawan difficulty the player and the party take 50% of the damage an enemy deals them.
 
-<sub>Source: the owner's difficulty modes, 2026-11-12: Padawan about twice Knight's ease, hardship kept. Code: `sim::world::harm`.</sub>
+<sub>Source: KOTOR and The Sith Lords: difficultyopt.2da's Easy row, 0.5, changes only the damage the party takes (the owner, 2026-11-17: the three difficulties as KOTOR has them). Code: `sim::world::harm`.</sub>
 
-<a id="combat-damage-padawan-dealt"></a>**Padawan: Damage the Party Deals** = **125%** (`1250 ‰`) · `combat.damage.padawan_dealt`
+<a id="combat-damage-padawan-dealt"></a>**Padawan: Damage the Party Deals** = **100%** (`1000 ‰`) · `combat.damage.padawan_dealt`
 
-On Padawan difficulty the player and the party deal 125% of their damage to enemies.
+On Padawan difficulty the player and the party deal 100% of their damage to enemies.
 
-<sub>Source: the owner's difficulty modes, 2026-11-12. Code: `sim::world::harm`.</sub>
+<sub>Source: KOTOR and The Sith Lords: difficultyopt.2da's Easy row, 0.5, changes only the damage the party takes (the owner, 2026-11-17: the three difficulties as KOTOR has them). Code: `sim::world::harm`.</sub>
+
+<a id="combat-damage-fast-foe-share"></a>**Fast Combat: Foes' Weapon Damage** = **60%** (`600 ‰`) · `combat.damage.fast_foe_share`
+
+In Fast Combat a creature outside the party deals 60% of the damage its blades' rhythm and its shots' pace carry.
+
+<sub>Source: the owner, 2026-11-17: Fast Combat is the combat of the build of 2026-11-16 (commit ac1f04c), kept as an option. Code: `sim::world::sabers, sim::world::firing`.</sub>
+
+<a id="combat-damage-fast-gunner-share"></a>**Fast Combat: Foes' Ranged Damage** = **60%** (`600 ‰`) · `combat.damage.fast_gunner_share`
+
+In Fast Combat a creature's shots deal a further 60% of that.
+
+<sub>Source: the owner, 2026-11-17: Fast Combat, the build of 2026-11-16 (`ai.gunners.damage_share` was this). Code: `sim::world::firing`.</sub>
+
+<a id="combat-damage-fast-duel-rolls"></a>**Fast Combat: Lightsaber Duel Cut** = **×2** · `combat.damage.fast_duel_rolls`
+
+In Fast Combat, against a target who holds a lightsaber of its own, a lightsaber cut deals at most 2 damage rolls.
+
+<sub>Source: the owner, 2026-11-17: Fast Combat, the build of 2026-11-16 (`sabers.sweep.duel_rolls`, from the playtest of 2026-11-11). Code: `sim::combat::damage::assess`.</sub>
+
+<a id="combat-damage-fast-taken"></a>**Fast Combat: Damage the Party Takes** = **55% / 80% / 110%** (`550 / 800 / 1100 ‰`) · `combat.damage.fast_taken`
+
+Padawan **55%** · Knight **80%** · Master **110%**
+
+In Fast Combat the player and the party take 550 ‰, 800 ‰ and 1100 ‰ thousandths of an enemy's damage on Padawan, Knight and Master.
+
+<sub>Source: the owner, 2026-11-17: Fast Combat, the build of 2026-11-16 (its difficulty modes of 2026-11-12 and 13). Code: `sim::world::harm`.</sub>
+
+<a id="combat-damage-fast-dealt"></a>**Fast Combat: Damage the Party Deals** = **125% / 110% / 95%** (`1250 / 1100 / 950 ‰`) · `combat.damage.fast_dealt`
+
+Padawan **125%** · Knight **110%** · Master **95%**
+
+In Fast Combat the player and the party deal 1250 ‰, 1100 ‰ and 950 ‰ thousandths of their damage on Padawan, Knight and Master.
+
+<sub>Source: the owner, 2026-11-17: Fast Combat, the build of 2026-11-16 (its difficulty modes of 2026-11-12 and 13). Code: `sim::world::harm`.</sub>
 
 <a id="combat-damage-resist-most"></a>**Most a Resistance Stops** = **50%** (`500 ‰`) · `combat.damage.resist_most`
 
@@ -2428,12 +2465,6 @@ blow only if the attack roll against that target misses.
 A full cut of a party member's lightsaber deals 3 damage rolls, whatever the rhythm of its swings. Other blades, and lightsabers outside the party, deal as much of one roll as their swings' rhythm carries.
 
 <sub>Source: the owner's playtests, 2026-11-11: measured fights gave about 11 cuts to fell a trooper Jedi Academy fells in 1 or 2; aimed at 2 to 3 for a trooper and 4 to 6 for an elite. Code: `sim::world::sabers`.</sub>
-
-<a id="sabers-sweep-duel-rolls"></a>**Lightsaber Duel Cut** = **×2** · `sabers.sweep.duel_rolls`
-
-Against a target who holds a lightsaber of its own, a lightsaber cut deals at most 2 damage roll, however many it would deal another target. A duel between Jedi is decided by its blades, not ended in a few cuts.
-
-<sub>Source: the owner's playtest, 2026-11-11: Malak felled Master Vrook in a couple of swings. Code: `sim::combat::damage::assess`.</sub>
 
 <a id="sabers-sweep-least-margin"></a>**Lightsaber Cut Strength** = **75%** (`750 ‰`) · `sabers.sweep.least_margin`
 
@@ -5886,7 +5917,7 @@ the more it hangs back.
 
 <a id="ai-blades-rating-health-full"></a>**Full Vitality** = **200 HP** · `ai.blades.rating.health_full`
 
-A creature with 200 vitality points counts its health in full when it judges a new enemy.
+A creature judges a new enemy by its share of its own vitality: at full vitality its health counts as 200, JA's full health, whatever its level.
 
 <sub>Source: JA: a Jedi NPC's rating of a new enemy. Code: `sim::combat::pace::Pace::rate`.</sub>
 
@@ -6456,11 +6487,11 @@ The time between a creature's shots varies by up to 0.15 seconds either way.
 
 <sub>Source: JA: NPC shooting. Code: `sim::combat::troop::Troop::fire`.</sub>
 
-<a id="ai-gunners-damage-share"></a>**Ranged Damage** = **60%** (`600 ‰`) · `ai.gunners.damage_share`
+<a id="ai-gunners-damage-share"></a>**Ranged Damage** = **100%** (`1000 ‰`) · `ai.gunners.damage_share`
 
-A creature's shots deal 60% of the damage per second it would deal in rounds of combat.
+A creature's shots deal 100% of the damage per second it would deal in rounds of combat.
 
-<sub>Source: the owner's balance, 2026-10-12. Code: `sim::combat::troop::paced`.</sub>
+<sub>Source: the owner, 2026-11-17: a standing level-3 character took about 40% of KOTOR's damage a second from the Taris duelists' pistols, one shot in five landing (600 from 2026-10-12). Code: `sim::combat::troop::paced`.</sub>
 
 <a id="ai-gunners-pair-spacing"></a>**Two Pistols' Rate of Fire** = **50%** (`500 ‰`) · `ai.gunners.pair_spacing`
 

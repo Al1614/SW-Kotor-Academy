@@ -1,52 +1,54 @@
 # How combat works in KOTOR Academy
 
-KOTOR Academy keeps the Knights of the Old Republic rules (levels, attributes, feats, Force powers, equipment) and plays them in real time with Jedi Academy's movement and lightsaber combat. Nothing is rolled behind a pause menu: you swing, block, dodge and cast yourself. Your character sheet still decides how much each of those is worth.
+KOTOR Academy keeps the Knights of the Old Republic rules (levels, attributes, feats, Force powers, equipment) and plays them in real time with Jedi Academy's movement and lightsaber combat. Nothing waits behind a pause menu: you swing, block, dodge and cast yourself, and the original game's attack roll decides whether each blow that lands counts. Your character sheet still decides how much each of those is worth.
 
 This page covers the changes that matter most. Every number the game plays by is in the [full rulebook](RULEBOOK.md).
 
-## Hitting: your aim, your character's skill
+## Two ways to fight
 
-An attack hits when the blade or bolt actually touches the target. There is no to-hit roll that makes a clean swing miss.
+**KOTOR Academy Combat** is the default. **Fast Combat** is the combat of the first alpha. Switch between them in **Options → Gameplay**. Everything below describes KOTOR Academy Combat unless it says otherwise.
 
-Instead, your character's skill sets **how much damage a hit deals**. Each hit is multiplied by the chance the original game's attack roll would have had:
+## Hitting: your aim, then the dice
 
-    (21 + attack bonus − target's Defense) ÷ 20
+An attack lands when the blade or bolt actually touches the target. Every attack that lands then makes the original game's attack roll:
 
-- A skilled attacker against low Defense deals close to full damage.
-- A weak attacker against high Defense deals little.
-- A hit never deals less than 5% or more than 95% of its damage.
+    d20 + attack bonus  against  the target's Defense
+
+- A roll that meets or beats Defense **hits** and deals the weapon's full damage roll.
+- A roll below Defense **misses** and deals nothing. A natural 20 always hits; a natural 1 always misses.
+- Against someone holding a blade, a miss shows as a **block**: the swing is turned aside.
+- The roll is the same for you, your companions and your enemies, and for every weapon.
+- There is no fixed number of attacks per round. You attack as often as you swing or shoot.
 
 Attack bonus is what it was in the original: base attack bonus, Strength (melee) or Dexterity (ranged), Weapon Focus, lightsaber Forms, item bonuses, and the penalties for two weapons or missing proficiency.
 
 ## Defense
 
-Defense is still 10 + Dexterity modifier (limited by armor) + armor, class and other bonuses. It no longer makes attacks miss. It **reduces the damage of every hit you take**, by the formula above. Raising Defense is as valuable as before; it just works on every hit instead of some of them.
+Defense is 10 + Dexterity modifier (limited by armor) + armor, class and other bonuses, as in the original. It makes attacks miss. The higher your Defense, the more often an enemy's attack does nothing.
 
 ## Damage
 
-A weapon's damage is its damage roll, plus bonus damage, Strength modifier (melee) and Weapon Specialization. Critical hits multiply it. Sneak Attack adds to it. The target's resistances and damage reduction come off, and the result is scaled by the chance to hit.
+A weapon's damage is its damage roll, plus bonus damage, Strength modifier (melee) and Weapon Specialization. Critical hits multiply it. Sneak Attack adds to it. The target's resistances and damage reduction come off. A swing that cuts one body several times is one attack with one roll.
 
-A few things were tuned so real-time fights last a sensible time:
-
-| Rule | Value |
-|---|---|
-| Combat pace: each round of attacks deals this many rounds' worth of damage, spread over the weapon's swings or shots | ×4 |
-| Party member's vibroblade or sword: damage rolls per full swing | 2 |
-| Party member's blade: least damage a landed swing deals, however high the Defense | 75% |
-| Party member's blaster: least damage a landed shot deals | 50% |
-| Party member's blaster: damage per shot, against its rate of fire | ×3 |
-| Enemies' weapon damage | 60% |
-| Most a damage resistance can stop (immunity is not limited) | 50% of the roll |
-
-A fast weapon deals many light hits; a slow one deals few heavy hits. The total over a round is the same.
+Doors, containers and other objects are not rolled against: they take damage as they did before.
 
 ## Difficulty
 
+Difficulty changes only the damage your party takes, as in the original games.
+
 | Difficulty | Damage the party takes | Damage the party deals |
 |---|---|---|
-| Padawan | 55% | 125% |
-| Knight | 80% | 110% |
-| Master | 110% | 95% |
+| Padawan | 50% | 100% |
+| Knight | 100% | 100% |
+| Master | 150% | 100% |
+
+## Fast Combat
+
+Fast Combat makes no attack roll. Every attack that touches its target hits, and the chance the roll would have had sizes the damage instead:
+
+    (21 + attack bonus − target's Defense) ÷ 20
+
+A hit never deals less than 5% or more than 95% of its damage. Defense reduces every hit instead of making some miss. Fights are quicker and less swingy. The numbers Fast Combat plays by are in the [rulebook](RULEBOOK.md).
 
 ## Blocking
 
