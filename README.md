@@ -132,6 +132,8 @@ Delete the **KOTOR Academy** folder and the desktop shortcut. Your games are unt
 - **The door after that one stays locked, and the room before it was empty**: this was a bug in earlier downloads, when the Security door opened while Trask was still talking. Download the newest release, then load a save from before that door or start a new game. A save made after it happened stays stuck.
 - **A mod's texture looks wrong**: check the same file is not also in your KOTOR `Override` folder or in `mods` from another pack. The one in `mods` is used first, then `Override`, then the game's own.
 - **The game closes as soon as it starts**: start it again. The launcher tries DirectX 12 first and then lets your graphics card choose, and switches back by itself if the mode it remembered stops working. Your graphics card needs DirectX 12 or Vulkan; if it still closes, update the graphics driver. To make the launcher forget its remembered choice by hand, open `paths.txt` in your KOTOR Academy folder and delete the line `GRAPHICS=auto`.
+- **My energy shield does nothing**: a shield works only while it is worn. Press **I**, open the Equipment tab and put it on an arm, then press the shield key.
+- **Stuck in the Ebon Hawk's crew quarters with only "CutStart" to point at** (KOTOR I): this was a bug in earlier downloads for a woman who began as a Jedi Guardian or Sentinel. Download the newest release and load a save from before you boarded the ship. In a save made inside the quarters, point at "CutStart" and use it to start the vision.
 - **Where are my saves?** Press the Windows key, type `%APPDATA%\kjk` and press Enter. Delete that folder only if you want to wipe your saves and settings.
 - **Setting a game folder by hand**: copy `paths.example.txt`, name the copy `paths.txt`, and type the game's folder into it.
 
@@ -168,7 +170,7 @@ The short version:
 
 - **Your aim, then the dice.** A swing or shot has to touch the target. Each one that does makes the original game's attack roll against Defense: a hit deals full damage, a miss deals nothing.
 - **Enemies play by the same roll.** High Defense makes their attacks miss.
-- **Two combat modes.** KOTOR Academy Combat (the default) is described here. Fast Combat, the first alpha's combat with no misses, can be chosen in Options → Gameplay.
+- **Two combat modes.** KOTOR Academy Combat (the default) is described here. Fast Combat, the first alpha's combat with no misses, can be chosen in Options → Gameplay, from the main menu or the pause menu.
 - **You block yourself.** Hold Guard to raise your blade; time an attack press for a perfect parry; deflect blaster bolts with a lightsaber.
 - **Force powers are real time**, cost what they always did, and keep the original effects.
 
@@ -177,13 +179,15 @@ The full explanation, with the numbers, is in [How combat works](docs/COMBAT.md)
 ## What is new in this update
 
 - **KOTOR II's galaxy map opens.** You can leave Peragus for Telos and travel between planets from the map.
-- **KOTOR Academy Combat.** Attacks that land now make the original game's attack roll: a hit deals full damage, a miss deals nothing, and a miss against a blade shows as a block. The first alpha's combat is still there as **Fast Combat** in Options → Gameplay.
+- **KOTOR Academy Combat.** Attacks that land now make the original game's attack roll: a hit deals full damage, a miss deals nothing, and a miss against a blade shows as a block. The first alpha's combat is still there as **Fast Combat** in Options → Gameplay, from the main menu or the pause menu.
 - **Difficulty works as in the original games**: Padawan, Knight and Master change the damage your party takes.
 - **Item wheel pins.** In the inventory (**I**), select an item and choose **Pin to wheel**. Hold **6**, point at a slice and release to use it. Up to ten pins; grenades can be pinned and thrown from the wheel.
 - **Auto Level Up**, for your character and, as an option, for companions.
 - **Mods load more like the original games**: the `Override` folder wins over a level's own files, KOTOR II reads folders inside `Override`, texture packs can sit in folders inside `mods`, and textures without `.txi` files keep their shine.
 - **KOTOR II with The Sith Lords Restored Content Mod** has been played from start to credits in automated testing, with fixes for the rebuilt Enclave's exit and Visas Marr's fight aboard the Ebon Hawk.
 - **The launcher recovers** when a remembered graphics mode stops starting.
+- **KOTOR I: the vision in the Ebon Hawk's crew quarters now starts** for a woman who began as a Jedi Guardian or Sentinel. Before, she stood in the quarters with only "CutStart" to point at and could not go on.
+- **An energy shield you are wearing keeps its key and its place in the item list** when you carry four or more other kinds of medpacs, stimulants and grenades.
 - Menu and control fixes, including switching party member from the pause menu.
 
 ## Known issues
