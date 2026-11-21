@@ -4,7 +4,7 @@
 
 Every number the game's own rules use, and what it does. The game reads these very values: change one in `data/rules/`, build, and the game plays by it. The numbers a game's data holds (a weapon's dice, a power's cost, a feat's row) are the game install's own; `kjk rules` lists them as the game reads them, beside these.
 
-Edition `0faf6034912479c9`.
+Edition `872e27b0c03625c8`.
 
 ## Contents
 
@@ -7672,7 +7672,9 @@ target is still in reach, and deals the damage of its creature weapon.
 
 A creature that is flinching, knocked down or stunned loses its blow. Such
 a creature holding a weapon, such as a Gamorrean's axe, fights as a
-humanoid does.
+humanoid does. A beast whose blows reach less far than a weapon swing closes
+to three quarters of its reach before it attacks, as an unarmed humanoid
+does.
 
 <a id="creatures-beasts-campaign-natural-share"></a>**Campaign Natural Attack Damage** = **300** · `creatures.beasts.campaign_natural_share`
 
@@ -7691,6 +7693,12 @@ A native beast's natural attack in combat practice deals 850 thousandths of its 
 Native beasts in the arena keep 950 thousandths of their native maximum HP unless a selected heavy profile applies. Campaign creatures retain their native health.
 
 <sub>Source: Owner-requested modest reduction for all supported arena creatures (2026-11-07). Code: `game::practice::catalog::Catalog::loadout_as`.</sub>
+
+<a id="creatures-beasts-wide-from-m"></a>**Big Beasts Keep to Wide Ways** = **1 m** · `creatures.beasts.wide_from_m`
+
+A creature whose body reaches 1 meters or more from its center, and that no player moves, cannot go where it does not fit: a rancor, a wraid, a kinrath or a bantha stops at a doorway or a corridor narrower than itself. Smaller creatures move as a person does.
+
+<sub>Source: K1's appearance.2da (perspace: the rancor 3.05 m), which the original game tests every creature's move by; the owner, 2026-11-20: the rancor of Taris's sewers came down the hallway and killed the party. Code: `sim::world::movement::move_actors`.</sub>
 
 <a id="creatures-beasts-practice-max-space-cm"></a>**Largest Sith Lords Practice Creature** = **150 cm** · `creatures.beasts.practice_max_space_cm`
 
@@ -9218,9 +9226,9 @@ A downed party member can be targeted up to 0.5 meters above the floor.
 
 <sub>Source: ours. Code: `sim::target::candidates`.</sub>
 
-<a id="targeting-volumes-trap-radius"></a>**Mine Radius** = **0.6 m** · `targeting.volumes.trap_radius`
+<a id="targeting-volumes-trap-radius"></a>**Mine Radius** = **1.5 m** · `targeting.volumes.trap_radius`
 
-A detected mine can be targeted within 0.6 meters of its center.
+A detected mine can be targeted within 1.5 meters of its center: anywhere on its marked area.
 
 <sub>Source: ours. Code: `sim::target::candidates`.</sub>
 

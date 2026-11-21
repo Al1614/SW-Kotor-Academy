@@ -158,6 +158,7 @@ Keyboard and mouse defaults. Everything can be changed in **Options**. Controlle
 | L / F2 and F3 | Saber style / previous and next saber stance |
 | Z | Lock on to a target |
 | Caps Lock / O / U | Stealth / lay a mine / Security |
+| 8 | Solo mode: your companions stay where they are, or follow again |
 | I / J / M / P / K | Inventory / journal / map / party / abilities |
 | F1 | First or third person |
 | F5 / F9 | Quick save / quick load |
@@ -193,6 +194,14 @@ The full explanation, with the numbers, is in [How combat works](docs/COMBAT.md)
 - **When your character falls, control passes to a companion who can move at once.** Before, the companion stood frozen until you switched by hand.
 - **Mouths move for speakers whose face is part of their body** (Rodians, Duros, Selkath, Wookiees and others) when they hold a weapon. Before, an armed speaker of this kind talked with a still face.
 - Menu and control fixes, including switching party member from the pause menu.
+- **Mines are easier to disarm and recover.** Look anywhere on a mine's red area to target it, and pressing the action button while still moving no longer cancels the walk to it.
+- **Gamorreans and other beasts attack properly.** Unarmed Gamorreans stood out of their own reach and almost never hit; they now close in and strike every round, and beasts' attack animations play in the campaigns.
+- **Unspent skill points carry over** to your next level-up.
+- **Headgear shows** on your character and companions when you equip a mask, visor or band.
+- **Solo mode** has a key (**8**) and can be mapped to a controller button in Options.
+- **Companions you control use the KOTOR stance** when you give them a blade, and KOTOR II characters now show it too.
+- **Rifles and repeaters are held with both hands properly**, including when aiming up or down.
+- **Giving items to a container** puts the cursor on the item list.
 
 ## Known issues
 
