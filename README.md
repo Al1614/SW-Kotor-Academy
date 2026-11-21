@@ -188,6 +188,10 @@ The full explanation, with the numbers, is in [How combat works](docs/COMBAT.md)
 - **The launcher recovers** when a remembered graphics mode stops starting.
 - **KOTOR I: the vision in the Ebon Hawk's crew quarters now starts** for a woman who began as a Jedi Guardian or Sentinel. Before, she stood in the quarters with only "CutStart" to point at and could not go on.
 - **An energy shield you are wearing keeps its key and its place in the item list** when you carry four or more other kinds of medpacs, stimulants and grenades.
+- **Companions you are not controlling deal half weapon damage**, so they no longer finish a fight before you reach it. A companion you take control of deals full damage.
+- **The inventory shows an item's description as soon as you land on it**, and long descriptions such as datapads can be scrolled.
+- **When your character falls, control passes to a companion who can move at once.** Before, the companion stood frozen until you switched by hand.
+- **Mouths move for speakers whose face is part of their body** (Rodians, Duros, Selkath, Wookiees and others) when they hold a weapon. Before, an armed speaker of this kind talked with a still face.
 - Menu and control fixes, including switching party member from the pause menu.
 
 ## Known issues

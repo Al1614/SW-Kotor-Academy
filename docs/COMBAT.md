@@ -30,6 +30,8 @@ Defense is 10 + Dexterity modifier (limited by armor) + armor, class and other b
 
 A weapon's damage is its damage roll, plus bonus damage, Strength modifier (melee) and Weapon Specialization. Critical hits multiply it. Sneak Attack adds to it. The target's resistances and damage reduction come off. A swing that cuts one body several times is one attack with one roll.
 
+A companion you are not controlling deals half its weapon damage to enemies. Take control of that companion and it deals full damage.
+
 Doors, containers and other objects are not rolled against: they take damage as they did before.
 
 ## Difficulty

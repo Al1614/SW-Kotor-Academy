@@ -4,7 +4,7 @@
 
 Every number the game's own rules use, and what it does. The game reads these very values: change one in `data/rules/`, build, and the game plays by it. The numbers a game's data holds (a weapon's dice, a power's cost, a feat's row) are the game install's own; `kjk rules` lists them as the game reads them, beside these.
 
-Edition `1efebe483cd9b86c`.
+Edition `0faf6034912479c9`.
 
 ## Contents
 
@@ -518,6 +518,12 @@ A party member's blaster shot deals 3 times the damage its rate of fire carries.
 A creature outside the party deals 100% of the damage its blades' rhythm and its shots' pace carry. Natural attacks and Force powers have their own rules.
 
 <sub>Source: KOTOR: a foe's weapon deals as the party's does. (500 and 600 from 2026-11-11, from a sweep that counted every shot a hit; the owner's play on Master, 2026-11-17, found the Taris duel ring no challenge at level 3). Code: `sim::world::sabers, sim::world::firing`.</sub>
+
+<a id="combat-damage-companion-share"></a>**Companions' Weapon Damage** = **50%** (`500 ‰`) · `combat.damage.companion_share`
+
+A party member no player is playing deals 50% of its weapon's damage to enemies. One a player plays or leads the party with deals all of it.
+
+<sub>Source: the owner, 2026-11-19: on Taris Carth felled every enemy in a couple of shots, before the player's first swing. Code: `sim::world::harm`.</sub>
 
 <a id="combat-damage-master-taken"></a>**Master: Damage the Party Takes** = **150%** (`1500 ‰`) · `combat.damage.master_taken`
 
