@@ -4,7 +4,7 @@
 
 Every number the game's own rules use, and what it does. The game reads these very values: change one in `data/rules/`, build, and the game plays by it. The numbers a game's data holds (a weapon's dice, a power's cost, a feat's row) are the game install's own; `kjk rules` lists them as the game reads them, beside these.
 
-Edition `872e27b0c03625c8`.
+Edition `c48eb760e7dd4b7e`.
 
 ## Contents
 
@@ -1030,6 +1030,14 @@ Repeating blasters and heavy repeating blasters fire a spray of small, quick bol
 A repeating blaster fires once every 0.2 seconds.
 
 <sub>Source: JA (the repeater's fire interval, 100); slowed by the owner's balance, 2026-11-12 (ten shots a second read as spam). Code: `sim::combat::weapons::primary`.</sub>
+
+<a id="weapons-repeater-attack-bolts"></a>**Bolts in an Attack** = **3 bolts** · `weapons.repeater.attack_bolts`
+
+3 bolts of a repeating blaster make one attack: each bolt that hits deals a third of the weapon's damage, whoever fires it.
+
+KOTOR's repeating blaster makes one attack a round and shows it as a burst. Every bolt still rolls to hit on its own.
+
+<sub>Source: the owner, 2026-11-21: a Vulkar patrol droid's bursts, each bolt at the weapon's whole damage, felled a party of three in nine seconds. Code: `sim::world::firing`.</sub>
 
 <a id="weapons-repeater-speed"></a>**Bolt Speed** = **40.6 meters per second** (`1600 units/s`) · `weapons.repeater.speed`
 

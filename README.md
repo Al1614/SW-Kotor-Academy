@@ -196,7 +196,11 @@ The full explanation, with the numbers, is in [How combat works](docs/COMBAT.md)
 - Menu and control fixes, including switching party member from the pause menu.
 - **Mines are easier to disarm and recover.** Look anywhere on a mine's red area to target it, and pressing the action button while still moving no longer cancels the walk to it.
 - **Gamorreans and other beasts attack properly.** Unarmed Gamorreans stood out of their own reach and almost never hit; they now close in and strike every round, and beasts' attack animations play in the campaigns.
-- **Unspent skill points carry over** to your next level-up.
+- **Unspent skill points, feats and Force powers carry over** to your next level-up: on the custom path you can press OK with picks left and take them later.
+- **Level-ups tell you what they gave**, including Auto Level Up (for example "+5 skill ranks, +1 feats").
+- **Repeating blasters** no longer deal a full attack with every bolt: three bolts make one attack, as in the original games. This applies to enemies, companions and you.
+- **Companions keep the weapon you gave them** when you move to another area.
+- **Party selection**: the shoulder buttons cycle past it like any other menu tab, and pressing a highlighted portrait adds or removes that companion.
 - **Headgear shows** on your character and companions when you equip a mask, visor or band.
 - **Solo mode** has a key (**8**) and can be mapped to a controller button in Options. Its icon lights at the bottom right of the screen while it is on.
 - **Companions you control use the KOTOR stance** when you give them a blade, and KOTOR II characters now show it too.
