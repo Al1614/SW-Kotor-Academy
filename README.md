@@ -198,10 +198,13 @@ The full explanation, with the numbers, is in [How combat works](docs/COMBAT.md)
 - **Gamorreans and other beasts attack properly.** Unarmed Gamorreans stood out of their own reach and almost never hit; they now close in and strike every round, and beasts' attack animations play in the campaigns.
 - **Unspent skill points carry over** to your next level-up.
 - **Headgear shows** on your character and companions when you equip a mask, visor or band.
-- **Solo mode** has a key (**8**) and can be mapped to a controller button in Options.
+- **Solo mode** has a key (**8**) and can be mapped to a controller button in Options. Its icon lights at the bottom right of the screen while it is on.
 - **Companions you control use the KOTOR stance** when you give them a blade, and KOTOR II characters now show it too.
 - **Rifles and repeaters are held with both hands properly**, including when aiming up or down.
 - **Giving items to a container** puts the cursor on the item list.
+- **Target lock no longer aims at the floor** after you have switched party leader several times, and a loaded game starts looking level.
+- **Your weapon stays in your hand while you talk.** Before, a hilt or gun in your party's hands vanished during most conversations.
+- **Companions no longer start talking in the middle of a fight.** Party banter and a companion who "wants to speak" now wait until the fight is over.
 
 ## Known issues
 
